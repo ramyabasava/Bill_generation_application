@@ -104,4 +104,4 @@ def list_bills():
     return render_template('bills_list.html', bills=all_bills)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
