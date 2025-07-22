@@ -1,0 +1,81 @@
+/* --- Lite Green Theme --- */
+
+/* 1. Overall Page Styling */
+body {
+    background-color: #f4fbf7; /* A very light, minty green background */
+    color: #2c3e50; /* A dark, soft slate color for text for better readability */
+}
+
+/* 2. Navbar Styling */
+/* We target Bootstrap's .bg-primary class and override it with our green */
+.bg-primary {
+    background-color: #4CAF50 !important; /* A calm, primary green. !important ensures it overrides Bootstrap. */
+}
+
+/* Style the links in the navbar for better visibility and interaction */
+.navbar-dark .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-dark .nav-link {
+    color: rgba(255, 255, 255, 0.9); /* Slightly less bright than pure white */
+}
+
+/* Add a nice hover effect to navbar links */
+.navbar-dark .nav-link:hover,
+.navbar-dark .navbar-brand:hover {
+    color: #ffffff; /* Make it pure white on hover */
+    transition: color 0.2s ease-in-out;
+}
+
+/* 3. Main Content Card Styling */
+.card {
+    background-color: #ffffff; /* A clean white card for content */
+    border: 1px solid #d4e9d4; /* A light green border to tie into the theme */
+    border-radius: 8px; /* Softer rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* A subtle shadow for depth */
+}
+
+.card-title {
+    color: #388E3C; /* A darker green for titles */
+    font-weight: 500;
+}
+
+/* 4. Form Styling */
+.item-row {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e8f5e9; /* Very faint green divider */
+}
+
+.item-row:last-child {
+    border-bottom: none;
+}
+
+/* Style the focus state of form inputs to match the theme */
+.form-control:focus {
+    border-color: #81c784; /* A lighter green for the focus border */
+    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
+}
+
+/* 5. Buttons and Other Elements */
+/* Override the primary button color */
+.btn-primary {
+    background-color: #4CAF50;
+    border-color: #45a049; /* A slightly darker border */
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #45a049; /* Darken the button on hover */
+    border-color: #3e8e41;
+}
+
+/* Style the totals summary box */
+.totals-summary {
+    background-color: #e8f5e9; /* A light green to highlight the area */
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #4CAF50; /* A strong green accent on the left */
+}

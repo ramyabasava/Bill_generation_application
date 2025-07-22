@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Bill #{{ bill.id }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm printable-area">
+    <div class="card-body p-5">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-6">
+                <h1 class="h2">Invoice</h1>
+                <div><strong>Bill #:</strong> {{ bill.id }}</div>
+                <div><strong>Date:</strong> {{ bill.bill_date }}</div>
+            </div>
+            <div class="col-6 text-end">
+                <h2 class="h4">Bill To:</h2>
+                <p class="mb-0"><strong>{{ bill.customer_name }}</strong></p>
+                <p>{{ bill.customer_address }}</p>
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        <table class="table table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" class="text-end">Quantity</th>
+                    <th scope="col" class="text-end">Unit Price</th>
+                    <th scope="col" class="text-end">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.description }}</td>
+                    <td class="text-end">{{ item.quantity }}</td>
+                    <!-- Changed '$' to '₹' -->
+                    <td class="text-end">₹{{ "%.2f"|format(item.unit_price) }}</td>
+                    <td class="text-end">₹{{ "%.2f"|format(item.total_price) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Totals -->
+        <div class="row justify-content-end mt-4">
+            <div class="col-md-4">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th class="text-end">Subtotal:</th>
+                            <!-- Changed '$' to '₹' -->
+                            <td class="text-end">₹{{ "%.2f"|format(bill.subtotal) }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-end">Tax ({{ "%.1f"|format(bill.tax_rate) }}%):</th>
+                            <!-- Changed '$' to '₹' -->
+                            <td class="text-end">₹{{ "%.2f"|format(bill.tax_amount) }}</td>
+                        </tr>
+                        <tr class="fw-bold h5">
+                            <th class="text-end">Grand Total:</th>
+                            <!-- Changed '$' to '₹' -->
+                            <td class="text-end">₹{{ "%.2f"|format(bill.grand_total) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-5">
+            <p class="text-muted">Thank you for your business!</p>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4 no-print">
+    <button onclick="window.print()" class="btn btn-success btn-lg">Print Bill</button>
+    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">Create Another Bill</a>
+</div>
+{% endblock %}

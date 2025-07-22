@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}All Bills{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="card-title mb-4">Saved Bills</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Bill #</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col" class="text-end">Grand Total</th>
+                    <th scope="col" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in bills %}
+                <tr>
+                    <th scope="row">{{ bill.id }}</th>
+                    <td>{{ bill.customer_name }}</td>
+                    <td>{{ bill.bill_date }}</td>
+                    <!-- Changed '$' to '₹' -->
+                    <td class="text-end">₹{{ "%.2f"|format(bill.grand_total) }}</td>
+                    <td class="text-center">
+                        <a href="{{ url_for('view_bill', bill_id=bill.id) }}" class="btn btn-sm btn-info">View</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">No bills found. Create one!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
